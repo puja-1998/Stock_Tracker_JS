@@ -11,7 +11,7 @@ let stockChart;
 const stockTable = document.getElementById('stock_table').getElementsByTagName('tbody')[0];
 
 // API 
-const apiKey = '9WVDNRTXAWZTCF6W';
+const apiKey = 'Y654TYX1RZTR6GYA';
 
 
 // fetch  stock data
@@ -25,7 +25,6 @@ async function getStockData(symbolStock) {
 // Display Stock Information
     function displayStockInfo(stockData, companyName) {
         const newestDate = Object.keys(stockData)[0];
-        console.log(newestDate);
         
         const newestData = stockData[newestDate];
         const price = newestData['4. close'];
@@ -88,18 +87,6 @@ function displayStockPriceGraph(stockData) {
     });
 }
    
-// Handling Stock Search Button
-searchStock.addEventListener('click', async ()=>{
-    const symbolStock = searchStock.value.toUpperCase();
-    const stockData = await getStockData(symbolStock);
-    if (stockData) {
-        displayStockInfo(stockData, symbolStock);
-        displayStockPriceGraph(stockData);
-    } else {
-        stockDetails.innerText = `Stock symbol not found.`;
-    }
-});
-
 // handling Load stock Data button
 btnLoadStock.addEventListener('click', async()=>{
     const selectedStockOption =  stockDropdown.value;
@@ -112,12 +99,21 @@ btnLoadStock.addEventListener('click', async()=>{
     }
 });
 
-// // fetch trending  stock data
-// async function getTrendingData() {
-//     const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=${apiKey}`);
-//     const data = await response.json();
-//     console.log(data);
-// }
+
+// Handling Stock Search Button
+btnSearchStock.addEventListener('click', async ()=>{
+    const symbolStock = searchStock.value.toUpperCase();
+    const stockData = await getStockData(symbolStock);
+    if (stockData) {
+        displayStockInfo(stockData, symbolStock);
+        displayStockPriceGraph(stockData);
+    } else {
+        stockDetails.innerText = `Stock symbol not found  for ${symbolStock}.`;
+    }
+});
+
+
+
 
 
 
