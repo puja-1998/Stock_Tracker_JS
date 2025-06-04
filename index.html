@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Tracker Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Stock Tracker Dashboard</h1>
+    </header>
+    <main>
+        <section>
+            <!-- stocks search -->
+            <div class="stock">
+                <h1>Select Trending Stock</h1>
+                <div class="stock-list">
+                    <select id="dropdown">
+                        <option value="AAPL">AAPL</option>
+                        <option value="GOOGL">GOOGL</option>
+                        <option value="MSFT">MSFT</option>
+                        <option value="AMZN">AMZN</option>
+                        <option value="TSLA">TSLA</option>
+                        <option value="FB">FB</option>
+                        <option value="NFLX">NFLX</option>
+                        <option value="NVDA">NVDA</option>
+                        <option value="BABA">BABA</option>
+                        <option value="INTC">INTC</option>
+                    </select>
+                    <button id="loadStock">Load Stock</button>
+                </div>
+                <div class="stock-search">
+                    <input type="text" placeholder="search stocks(e.g AAPL,FB)" id="stockSearch">
+                    <button id="searchStock">Search</button>
+                </div>
+            </div>
+
+            <!-- stock Information -->
+            <div class="stock_info">
+                <h2>Stock Information</h2>
+                <div id="stock-details"></div>
+            </div>
+
+            <!-- Stock Price Graph -->
+            <div class="stock_graph">
+                <h2>Stock Price Graph</h2>
+                <canvas id="stock-graph"></canvas>
+            </div>
+
+            <!-- Compare Stocks -->
+            <div class="stock_compare">
+                <h2>Compare Stocks</h2>
+                <table id="stock_table">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Price</th>
+                            <th>Change</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- stocks rows will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
