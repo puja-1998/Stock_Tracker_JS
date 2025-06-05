@@ -23,7 +23,7 @@ async function getStockData(symbolStock) {
 }
 
 // Display Stock Information
-    function displayStockInfo(stockData, companyName) {
+    function displayStockInfo(stockData, stockName) {
         const newestDate = Object.keys(stockData)[0];
         
         const newestData = stockData[newestDate];
@@ -32,28 +32,28 @@ async function getStockData(symbolStock) {
         const change = (price - stockData[Object.keys(stockData)[1]]['4. close']).toFixed(2);
         
         stockDetails.innerHTML = `
-            <h3>${companyName}</h3>
+            <h3>${stockName}</h3>
             <p>Price: $${price}</p>
             <p>Change: $${change}</p>
             <p>Volume: ${volume}</p>
         `;
 
-        updateStockTable(companyName, price, change, volume);
+        updateStockTable(stockName, price, change, volume);
     }
 
 
 // Update stock comparison table
-function updateStockTable(companyName, price, change, volume) {
+function updateStockTable(stockName, price, change, volume) {
     const rowsData = stockTable.insertRow();
     rowsData.innerHTML = `
-        <td>${companyName}</td>
+        <td>${stockName}</td>
         <td>$${price}</td>
         <td>${change}</td>
         <td>${volume}</td>
     `;
 }
 
-// Display stock Graph
+// Display stock Price Graph
 function displayStockPriceGraph(stockData) {
     const labels = Object.keys(stockData).slice(0, 30).reverse();
     const data = labels.map(date => stockData[date]['4. close']);
@@ -63,13 +63,13 @@ function displayStockPriceGraph(stockData) {
     }
 
     stockChart = new Chart(stockGraph, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Stock Price',
+                label: 'Stock Price Chart',
                 data: data,
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: 'red',
                 borderWidth: 1,
                 fill: false
             }]
